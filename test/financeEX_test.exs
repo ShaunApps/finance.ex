@@ -4,12 +4,12 @@ defmodule FinanceEXTest do
 
   import FinanceEX
 
-  test "AM returns the correct value when payment type is years and paysatbeginning" do
-    assert am(20000, 7.5, 5, 0, 1) == 400.76
+  test "AM returns the correct value when payment type is years (5 years here) and paysatbeginning == false" do
+    assert am(20000, 7.5, 5, 0, 0) == 400.76
   end
 
-  test "AM returns the correct value when payment type is months and paysatbeginning" do
-    assert am(20000, 7.5, 5, 1, 1) == 400.76
+  test "AM returns the correct value when payment type is months (so 60 months == 5 years) and paysatbeginning == false" do
+    assert am(20000, 7.5, 60, 1, 0) == 400.76
   end
 
   # test "the truth" do

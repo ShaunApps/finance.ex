@@ -15,12 +15,13 @@ defmodule FinanceEX do
         IO.puts "not defined"
     end
 
-    am = principal * (numerator / denominator)
+    am = round((principal * (numerator / denominator)), 2)
     am
+
   end
 
   defp buildNumerator(numInterestAccruals, payAtBeginning, ratePerPeriod) do
-    if payAtBeginning do
+    if payAtBeginning == 1 do
       numInterestAccruals = numInterestAccruals - 1 #can't remember if -= is valid, too lazy right now to check
     end
 
