@@ -4,26 +4,32 @@ defmodule FinanceEX do
     ratePerPeriod = rate / 12 / 100
     numInterestAccruals = period * 12
 
-    cond do
-      yearOrMonth == 0 ->
-        numerator = buildNumerator(numInterestAccruals, payAtBeginning, ratePerPeriod)
-        denominator = :math.pow((1 + ratePerPeriod), numInterestAccruals) - 1
-      yearOrMonth == 1 ->
-        numerator = buildNumerator(period, payAtBeginning, ratePerPeriod)
-        denominator = :math.pow((1 + ratePerPeriod), period) - 1
-      true ->
-        IO.puts "not defined"
-    end
+    numerator =
+      case yearOrMonth do
+        0 -> buildNumerator(numInterestAccruals, payAtBeginning, ratePerPeriod)
+        1 -> buildNumerator(period, payAtBeginning, ratePerPeriod)
+        _ -> IO.puts "not defined"
+      end
 
-    am = round((principal * (numerator / denominator)), 2)
+    denominator =
+      case yearOrMonth do
+        0 -> :math.pow((1 + ratePerPeriod), numInterestAccruals) - 1
+        1 -> :math.pow((1 + ratePerPeriod), period) - 1
+        _ -> IO.puts "not defined"
+      end
+
+    am = Float.round((principal * (numerator / denominator)), 2)
     am
 
   end
 
   defp buildNumerator(numInterestAccruals, payAtBeginning, ratePerPeriod) do
-    if payAtBeginning == 1 do
-      numInterestAccruals = numInterestAccruals - 1 #can't remember if -= is valid, too lazy right now to check
-    end
+
+    numInterestAccruals =
+      case payAtBeginning do
+        1 -> numInterestAccruals - 1
+        _ -> numInterestAccruals
+      end
 
     # :math.pow is an Erlang library
     ratePerPeriod * :math.pow((1 + ratePerPeriod), numInterestAccruals)
