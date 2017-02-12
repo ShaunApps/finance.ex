@@ -12,6 +12,10 @@ defmodule FinanceEXTest do
     assert am(20000, 7.5, 60, 1, 0) == 400.76
   end
 
+  test "CAGR returns the correct value" do
+    assert cagr(10000, 19500, 3) == 24.93
+  end
+
   # test "the truth" do
   #   assert 1 + 1 == 2
   # end
