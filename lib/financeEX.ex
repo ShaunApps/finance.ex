@@ -1,6 +1,6 @@
 defmodule FinanceEX do
 
-  # Amoritization function
+  # Amoritization
   def am(principal, rate, period, yearOrMonth, payAtBeginning) do
     ratePerPeriod = rate / 12 / 100
     numInterestAccruals = period * 12
@@ -35,10 +35,16 @@ defmodule FinanceEX do
     ratePerPeriod * :math.pow((1 + ratePerPeriod), numInterestAccruals)
   end
 
-  # Compound Annual Growth Rate
+  # Compound Annual Growth Rate (cagr)
   def cagr(beginning_value, ending_value, num_of_periods) do
     value = :math.pow((ending_value / beginning_value), 1 / num_of_periods) - 1
     Float.round(((value * 10000) / 100), 2)
+  end
+
+  # Compund Interest (ci)
+  def ci(rate, num_of_compoundings, principal, num_of_periods) do
+    value = principal * :math.pow((1 + ((rate / 100) / num_of_compoundings)), num_of_compoundings * num_of_periods)
+    Float.round(((value * 100) / 100), 2)
   end
 
 
