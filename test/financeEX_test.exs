@@ -20,6 +20,10 @@ defmodule FinanceEXTest do
     assert ci(4.3, 4, 1500, 6) == 1938.84
   end
 
+  test "DF returns the correct value" do
+    assert df(10, 6) == [1, 0.91, 0.827, 0.752, 0.684]
+  end
+
   # test "the truth" do
   #   assert 1 + 1 == 2
   # end

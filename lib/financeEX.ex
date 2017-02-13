@@ -47,5 +47,20 @@ defmodule FinanceEX do
     Float.round(((value * 100) / 100), 2)
   end
 
+  # Discount Factor (DF)
+  # this definitely looks bad, needs refactoring
+  def df(rate, num_of_periods) do
+    Enum.map(1..(num_of_periods - 1), fn x ->
+      Float.ceil( (((1 / :math.pow((1 + rate/100), (x - 1))) * 1000)/ 1000), 3)
+    end)
+  end
+
+  # Future Value (FV)
+  def fv(rate, cf0, num_of_period) do
+    
+  end
+
+
+
 
 end
