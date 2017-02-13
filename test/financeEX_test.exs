@@ -52,5 +52,15 @@ defmodule FinanceEXTest do
     assert npv(10, -500000, [200000, 300000, 200000]) == 80015.03
   end
 
+  test "ROI returns the correct value" do
+    # If initial investment is -$55,000 and the earnings are $60,000, the return on investment is 9.09%
+    assert roi(-55000, 60000) == 9.09
+  end
+
+  test "R72 returns the correct value" do
+    # If annual rate is 10%, rule of 72 is 7.2 years
+    assert r72(10) == 7.2
+  end
+
 
 end

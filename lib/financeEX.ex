@@ -89,6 +89,30 @@ defmodule FinanceEX do
     Float.round(((value * 100) / 100), 2)
   end
 
+  # Payback Period (PP)
+
+  # Present Value (PV)
+
+  # Profitability Index (PI)
+
+  # Return on Investment (ROI)
+  def roi(cf0, earnings) do
+    value = (earnings - Kernel.abs(cf0)) / Kernel.abs(cf0) * 100
+    Float.round(value, 2)
+  end
+
+  # Rule of 72 (r72)
+  def r72(rate) do
+    72 / rate
+  end
+
+  # Weighted Average Cost of Capital (WACC)
+
+  # Loan Payment Per Period (PMT)
+
+  # Inflation-adjusted Return (IAR)
+
+
 
 
 end
