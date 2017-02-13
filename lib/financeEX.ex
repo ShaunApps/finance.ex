@@ -62,10 +62,32 @@ defmodule FinanceEX do
   end
 
   # Internal Rate of Return (IRR)
-  def irr(cfs) do
-    
+  # def irr(cfs) do
+  #
+  # end
+  #
+  # # defp seek_zero(function) do
+  # #   x = 1
+  # #
+  # # end
+  #
+  # def xirr(cfs, dts, guess) do
+  #
+  # end
+
+  # Leverage Ratio (LR)
+  def lr(total_liabilities, total_debts, total_income) do
+    (total_liabilities + total_debts) / total_income
   end
 
+  # Net Present Value (NPV)
+  def npv(rate, initial_investment, values \\ []) do
+    rate = rate/100
+    value = Enum.reduce(values, initial_investment, fn(x, acc) ->
+      acc + ( x / :math.pow((1 + rate), (Enum.find_index(values, fn(y) -> y == x end )) + 2 ))
+    end)
+    Float.round(((value * 100) / 100), 2)
+  end
 
 
 
