@@ -57,6 +57,12 @@ defmodule FinanceEX do
 
   # Future Value (FV)
   def fv(rate, cf0, num_of_period) do
+    fv = cf0 * :math.pow((1 + (rate / 100)), num_of_period)
+    Float.round(fv * 100) / 100
+  end
+
+  # Internal Rate of Return (IRR)
+  def irr(cfs) do
     
   end
 
