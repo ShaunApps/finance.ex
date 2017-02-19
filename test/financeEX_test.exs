@@ -62,5 +62,18 @@ defmodule FinanceEXTest do
     assert r72(10) == 7.2
   end
 
+  test "WACC returns the correct value" do
+    # If market value of equity is $600,000, market value of debt is $400,000, cost of equity is 6%, cost of debt is 5%, and tax rate is 35%, WACC is 4.9%
+    assert wacc(600000, 400000, 6, 5, 35) == 4.9
+  end
+
+  test "PMT returns the correct value" do
+    assert pmt(0.02, 36, -1000000) == 39232.8526
+  end
+
+  test "IAR returns the correct value" do
+    assert iar(0.08, 0.03) == 4.85
+  end
+
 
 end

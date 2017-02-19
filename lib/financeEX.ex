@@ -107,11 +107,23 @@ defmodule FinanceEX do
   end
 
   # Weighted Average Cost of Capital (WACC)
+  def wacc(market_value_of_equity, market_value_of_debt, cost_of_equity, cost_of_debt, tax_rate) do
+    v = market_value_of_equity + market_value_of_debt
+    # pattern match values for readability
+    [e, d, re, rd, t] = [market_value_of_equity, market_value_of_debt, cost_of_equity, cost_of_debt, tax_rate]
+    value = ((e / v) * re/100) + (((d / v) * rd/100) * (1 - t/100))
+    Float.round(((value * 1000) / 10), 2)
+  end
 
   # Loan Payment Per Period (PMT)
+  def pmt(fractional_rate, num_of_payments, principal) do
+    Float.round(-principal * fractional_rate/(1 - :math.pow(1 + fractional_rate, -num_of_payments)), 4)
+  end
 
   # Inflation-adjusted Return (IAR)
-
+  def iar(investment_return, inflation_rate) do
+    Float.round(100 * (((1 + investment_return) / (1 + inflation_rate)) - 1), 2)
+  end
 
 
 
